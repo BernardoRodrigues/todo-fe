@@ -65,5 +65,8 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "mocha": "^9.1.1",
     "typescript": "~4.2.3"
+  },
+  "resolutions": {
+    "graceful-fs": "4.2.4"
   }
 }
