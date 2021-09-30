@@ -2,7 +2,7 @@
   "name": "todo-client-app-angular",
   "version": "0.0.0",
   "engines": {
-    "node": "10.13.0",
+    "node": "14.*",
     "npm": "6.4.1"
   },
   "scripts": {
