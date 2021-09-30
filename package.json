@@ -1,6 +1,10 @@
 {
   "name": "todo-client-app-angular",
   "version": "0.0.0",
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,9 +14,10 @@
     "precache": "sw-precache --verbose --config=sw-precache-config.js",
     "build:dev": "ng build --configuration development",
     "start:dev": "ng serve --configuration development",
-    "build:prod": "ng build --configuration production",
+    "build:prod": "NODE_ENV=production node server.js",
     "start:prod": "ng serve --configuration production",
-    "start-http-server": "node ./node_modules/http-server/bin/http-server -p 4200 dist/todo-client-app-angular/"
+    "start-http-server": "node ./node_modules/http-server/bin/http-server -p 4200 dist/todo-client-app-angular/",
+    "postinstall": "ng build --aot --configuration production"
   },
   "private": true,
   "dependencies": {
@@ -34,9 +39,11 @@
     "@types/moment-timezone": "^0.5.30",
     "angular-calendar": "^0.28.24",
     "date-fns": "^2.21.3",
+    "express": "^4.17.1",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "ngx-material-timepicker": "^5.5.3",
+    "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
