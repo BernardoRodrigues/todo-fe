@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8000/api',
+  // apiUrl: 'http://localhost:8000/api',
+  apiUrl: 'https://todo-gateway.herokuapp.com/api',
   env: "PROD",
   vapidKey: "BLaKAScEHyH3XM7eTB4HVLPbGUFnogCnl-R4ByZ9sq6uB6cCMqeWt0LmTaIaMqY_tMBL-NmvLduXVcSuSmP4Kqo"
 };

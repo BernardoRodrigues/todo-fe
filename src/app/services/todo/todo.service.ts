@@ -15,8 +15,20 @@ export class TodoService {
     return this.httpClient.get<TodoModel[]>(`${this.apiUrl}/todo/`)
   }
 
-  public create(todo: {title: string, startDate: Date, endDate: Date, priority: number}): Observable<{id: string}> {
+  public create(todo: {title: string, startDate: Date, endDate: Date, priority: number, isDone: boolean}): Observable<{id: string}> {
     return this.httpClient.post<{id: string}>(`${this.apiUrl}/todo/`, todo)
+  }
+
+  public updateStatus(id: string, status: boolean): Observable<void> {
+    return this.httpClient.put<void>(`${this.apiUrl}/todo/${id}/status`, {status: status});
+  }
+
+  public update(id: string, startDate: Date, endDate: Date, title: string, priority: number, isDone: boolean): Observable<void> {
+    return this.httpClient.put<void>(`${this.apiUrl}/todo/${id}`, {id, startDate, endDate, title, priority, isDone});
+  }
+
+  public cancel(id: string): Observable<void> {
+    return this.httpClient.put<void>(`${this.apiUrl}/todo/${id}/cancel`, null);
   }
 
 }

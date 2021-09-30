@@ -1,0 +1,25 @@
+<div class="component-list" fxLayout="row" fxLayoutAlign="space-around center">
+    <div fxFlex="45">
+        <span class="list-title">Todo</span>
+        <div #notDone="cdkDropList" cdkDropList [cdkDropListData]="todosNotDone"
+        [cdkDropListConnectedTo]="[done]" (cdkDropListDropped)="drop($event, 'TODO')" class="list">
+            <mat-card *ngFor="let tnd of this.todosNotDone" cdkDrag class="todo" (click)="this.openDialog(tnd)">
+                <mat-card-title>{{tnd.title}}</mat-card-title>
+            </mat-card>
+        </div>
+    </div>
+
+    <mat-divider [vertical]="true"></mat-divider>
+
+    <div fxFlex="45">
+        <span class="list-title">Done</span>
+        <div #done="cdkDropList" cdkDropList [cdkDropListData]="todosDone"
+        [cdkDropListConnectedTo]="[notDone]" (cdkDropListDropped)="drop($event, 'DONE')" class="list">
+            
+            <mat-card *ngFor="let td of this.todosDone" class="todo" cdkDrag (click)="this.openDialog(td)">
+                <mat-card-title>{{td.title}}</mat-card-title>
+            </mat-card>
+        </div>
+    </div>
+
+</div>

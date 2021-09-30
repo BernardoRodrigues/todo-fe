@@ -1,12 +1,12 @@
-import { SubscriptionService } from './../services/subscription/subscription.service';
-import { UserDataService } from './../services/user-data/user-data.service';
-import { AuthService } from './../services/auth/auth.service';
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../services/user/user.service';
 import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-login',

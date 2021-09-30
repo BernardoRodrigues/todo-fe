@@ -1,15 +1,12 @@
 import { MatDialog } from '@angular/material/dialog';
-import { TodoModel } from './../models/todo.model';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
-import { CalendarView, CalendarEvent, CalendarMonthViewDay } from 'angular-calendar';
+import { CalendarEvent } from 'angular-calendar';
 import { ReminderDialogComponent } from '../reminder-dialog/reminder-dialog.component';
-import * as moment from 'moment';
-import { SwPush } from '@angular/service-worker';
-import { SubscriptionService } from '../services/subscription/subscription.service';
-import { SideBarService } from '../services/side-bar/side-bar.service';
-import { TodoDataService } from '../services/todo-data/todo-data.service';
+import { TodoModel } from 'src/app/models/todo.model';
+import { SideBarService } from 'src/app/services/side-bar/side-bar.service';
+import { TodoDataService } from 'src/app/services/todo-data/todo-data.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -57,6 +54,16 @@ export class DashboardComponent implements OnInit {
       if (this._reminders != null) {
         this.todoDataService.reminders = data.reminders;
         this.todoDataService.todoDataSubject.next(data.reminders);
+        this.activatedRoute.queryParamMap.subscribe((params) => {
+          if (params.has('id')) {
+            this.dialog.open(ReminderDialogComponent, {
+              data: {
+                data: this._reminders?.find((t) => t.id === params.get('id')),
+                mode: 'R'
+              },
+            })
+          }
+        })
         // this._events = this._reminders.filter((v) => !v.isCancelled && !v.isDone).map(this.mapTodoToCalendarEvent)
       }
     });
@@ -80,7 +87,7 @@ export class DashboardComponent implements OnInit {
       data: {
         data: null,
         mode: 'C'
-      }
+      },
     })
     dialogRef.afterClosed().subscribe((v: TodoModel) => {
       if (this._reminders != null) {

@@ -1,0 +1,9 @@
+<div fxLayout="column" fxLayoutAlign="space-around center" >
+    <div mat-dialog-content>
+        <span>Are you sure?</span>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary" mat-dialog-close (click)="this.close(false)">No</button>
+        <button mat-raised-button color="warn" mat-dialog-close (click)="this.close(true)">Yes</button>
+    </div>
+</div>

@@ -1,14 +1,11 @@
-import { SignupComponent } from './../signup/signup.component';
-import { LoginComponent } from './../login/login.component';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthService } from './../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user/user.service';
-import { SubscriptionService } from '../services/subscription/subscription.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthButtonSubjectService } from '../services/auth-button-subject/auth-button-subject.service';
-import { SideBarService } from '../services/side-bar/side-bar.service';
+import { AuthButtonSubjectService } from 'src/app/services/auth-button-subject/auth-button-subject.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { SideBarService } from 'src/app/services/side-bar/side-bar.service';
+import { UserService } from 'src/app/services/user/user.service';
+
 
 @Component({
   selector: 'app-header',

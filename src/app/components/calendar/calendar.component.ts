@@ -1,18 +1,27 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { SwPush } from '@angular/service-worker';
-import { CalendarEvent, CalendarMonthViewDay } from 'angular-calendar';
+import { CalendarDateFormatter, CalendarEvent, CalendarMonthViewDay } from 'angular-calendar';
 import * as moment from 'moment';
+import { Subject } from 'rxjs';
 import { TodoModel } from 'src/app/models/todo.model';
-import { ReminderDialogComponent } from 'src/app/reminder-dialog/reminder-dialog.component';
 import { SubscriptionService } from 'src/app/services/subscription/subscription.service';
 import { TodoDataService } from 'src/app/services/todo-data/todo-data.service';
+import { ReminderDialogComponent } from '../reminder-dialog/reminder-dialog.component';
+import { CustomDateFormatter } from './custom-date-formatter.provider';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+  styleUrls: ['./calendar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatter,
+    }
+  ]
 })
 export class CalendarComponent implements OnInit {
 
@@ -51,6 +60,8 @@ export class CalendarComponent implements OnInit {
     return moment(this.viewDate).endOf('week').toDate()
   }
 
+  public refresh: Subject<any> = new Subject();
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
@@ -70,11 +81,13 @@ export class CalendarComponent implements OnInit {
       this._reminders = v
       if (this._reminders != null) {
         this._events = this._reminders.filter((v) => !v.isCancelled && !v.isDone).map(this.mapTodoToCalendarEvent)
+        this.refresh.next();
       }
     })
     this.viewDate = new Date();
 
       this.swPush.messages.subscribe((notification: any) => {
+        console.log("Calendar - notification clicked")
         console.log("received push notification", notification);
         let options = {
           body: notification.body,
@@ -95,6 +108,8 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     
   }
+
+  
 
   public openNewTodoDialog(): void {
 

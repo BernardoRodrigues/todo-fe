@@ -1,14 +1,13 @@
-import { UserModel } from './../models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
-import { SubscriptionService } from '../services/subscription/subscription.service';
-import { UserDataService } from '../services/user-data/user-data.service';
-import { UserService } from '../services/user/user.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import { UserModel } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { UserDataService } from 'src/app/services/user-data/user-data.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-signup',

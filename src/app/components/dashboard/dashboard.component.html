@@ -14,10 +14,10 @@
   <mat-sidenav-content fxFill="80">
     <div class="content">
 
-      <div [hidden]="this.openNavItem !== 'list'">
+      <div style="width: inherit;" [hidden]="this.openNavItem !== 'list'">
         <app-list></app-list>
       </div>
-      <div [hidden]="this.openNavItem !== 'calendar'">
+      <div style="width: inherit;" [hidden]="this.openNavItem !== 'calendar'">
         <app-calendar></app-calendar>
       </div>
     </div>

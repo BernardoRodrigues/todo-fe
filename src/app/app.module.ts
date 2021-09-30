@@ -37,30 +37,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CalendarModule, DateAdapter as AngularCalendarDateAdapter } from 'angular-calendar';
 import { environment } from 'src/environments/environment';
-import { ReminderDialogComponent } from './reminder-dialog/reminder-dialog.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { SignupComponent } from './signup/signup.component';
+
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { HomeComponent } from './home/home.component';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE, DateAdapter } from '@angular/material/core';
 import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
-import { SideBarComponent } from './side-bar/side-bar/side-bar.component';
-import { ListComponent } from './dashboard/list/list.component';
-import { CalendarComponent } from './dashboard/calendar/calendar.component';
+
 import { SideBarService } from './services/side-bar/side-bar.service';
 import { UserDataService } from './services/user-data/user-data.service';
 import { UserService } from './services/user/user.service';
@@ -70,7 +62,21 @@ import { SubscriptionService } from './services/subscription/subscription.servic
 import { LoginSubjectService } from './services/login-subject/login-subject.service';
 import { AuthButtonSubjectService } from './services/auth-button-subject/auth-button-subject.service';
 import { AuthService } from './services/auth/auth.service';
-
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { ListComponent } from './components/list/list.component';
+import { LoginComponent } from './components/login/login.component';
+import { ReminderDialogComponent } from './components/reminder-dialog/reminder-dialog.component';
+import { SideBarComponent } from './components/side-bar/side-bar/side-bar.component';
+import { SignupComponent } from './components/signup/signup.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { A11yModule } from '@angular/cdk/a11y';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { CdkTableModule } from '@angular/cdk/table';
+import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 
 
 
@@ -87,6 +93,7 @@ import { AuthService } from './services/auth/auth.service';
     SideBarComponent,
     ListComponent,
     CalendarComponent,
+    AlertDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -123,6 +130,10 @@ import { AuthService } from './services/auth/auth.service';
     MatSortModule,
     MatPaginatorModule,
     NgxMaterialTimepickerModule,
+    DragDropModule,
+    A11yModule,
+    CdkStepperModule,
+    CdkTableModule,
     AppRoutingModule,
     FlexLayoutModule,
     CalendarModule.forRoot({
@@ -133,17 +144,17 @@ import { AuthService } from './services/auth/auth.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', {
-      enabled: true,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
-    }),
-    ServiceWorkerModule.register('ngsw-worker.js', {
+    ServiceWorkerModule.register('custom-sw.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    // ServiceWorkerModule.register('ngsw-worker.js', {
+    //   enabled: environment.production,
+    //   // Register the ServiceWorker as soon as the app is stable
+    //   // or after 30 seconds (whichever comes first).
+    //   registrationStrategy: 'registerWhenStable:30000'
+    // })
   ],
   providers: [
     SideBarService,

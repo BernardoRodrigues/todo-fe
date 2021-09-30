@@ -1,11 +1,10 @@
-import { HomeComponent } from './home/home.component';
 import { DashboardResolver } from './services/dashboard-resolver/dashboard.resolver';
-import { SignupComponent } from './signup/signup.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
 import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {

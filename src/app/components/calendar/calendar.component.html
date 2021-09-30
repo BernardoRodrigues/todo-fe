@@ -42,18 +42,18 @@
 
       <mwl-calendar-month-view [hidden]="group.value !== 'month'" [events]="this._events"
         (eventClicked)="this.eventClicked('month', $event.event)" [viewDate]="viewDate"
-        (dayClicked)="this.dayClicked($event.day, $event.sourceEvent)">
+        (dayClicked)="this.dayClicked($event.day, $event.sourceEvent)" [refresh]="refresh">
         <!-- (beforeViewRender)="" -->
 
       </mwl-calendar-month-view>
 
       <mwl-calendar-week-view [hidden]="group.value !== 'week'" [events]="this._events"
-        (eventClicked)="this.eventClicked('week', $event.event)" [viewDate]="viewDate">
+        (eventClicked)="this.eventClicked('week', $event.event)" [viewDate]="viewDate" [refresh]="refresh">
         <!-- (beforeViewRender)="" -->
 
       </mwl-calendar-week-view>
       <mwl-calendar-day-view [hidden]="group.value !== 'day'" [events]="this._events"
-        (eventClicked)="this.eventClicked('day', $event.event)" [viewDate]="viewDate">
+        (eventClicked)="this.eventClicked('day', $event.event)" [viewDate]="viewDate" [refresh]="refresh">
         <!-- (beforeViewRender)="" -->
 
       </mwl-calendar-day-view>

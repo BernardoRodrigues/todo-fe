@@ -20,7 +20,7 @@ export class AuthGuardService implements CanActivate {
     // || this.jwtHelper.isTokenExpired(token)
     const user = this.authService.user
     if (token == null || user == null) {
-      this.router.navigate(['/home'])
+      this.router.navigate(['/home'], {queryParams: {returUrl: state.url}})
       return true;
     }
 
